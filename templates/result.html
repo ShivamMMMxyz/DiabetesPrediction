@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white">
+                <h2 class="text-center">Prediction Result</h2>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title">Patient Details</h4>
+                <p><strong>Name:</strong> {{ prediction_result.patient_name }}</p>
+                <p><strong>ID:</strong> {{ prediction_result.patient_id }}</p>
+                <p><strong>Prediction Time:</strong> {{ prediction_result.prediction_date }}</p>
+                <hr>
+                
+                {% if prediction_result.has_diabetes %}
+                    <div class="alert alert-danger text-center" role="alert">
+                        <h3 class="alert-heading">DIABETES POSITIVE</h3>
+                        <p>{{ prediction_result.message }}</p>
+                        <hr>
+                        <p class="mb-0"><strong>Confidence:</strong> {{ prediction_result.confidence }}</p>
+                    </div>
+                {% else %}
+                    <div class="alert alert-success text-center" role="alert">
+                        <h3 class="alert-heading">DIABETES NEGATIVE</h3>
+                        <p>{{ prediction_result.message }}</p>
+                        <hr>
+                        <p class="mb-0"><strong>Confidence:</strong> {{ prediction_result.confidence }}</p>
+                    </div>
+                {% endif %}
+                
+                <div class="text-center mt-4">
+                    <a href="/" class="btn btn-primary">Make Another Prediction</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
